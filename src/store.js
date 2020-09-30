@@ -20,7 +20,20 @@ const initialState = {
     contactos: []
 };
 
-const reducerUsuarios = (state = initialState, action) => state;
+const reducerUsuarios = (state = initialState, action) => {
+    
+    if(action.type === "AGREGAR_USUARIO"){
+        alert(action.usuario.nombre);
+        return {
+            ...state,
+            contactos: state.contactos.concat(action.usuario),
+            usuarios: state.usuarios.filter(user => user.nombre !== action.usuario.nombre),
+        }
+
+    }
+    
+    return state;
+};
 
 
 export default createStore(reducerUsuarios);
